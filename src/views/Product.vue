@@ -99,13 +99,15 @@ export default {
               "img/wbag1.jpg",
               "img/wbag2.jpg",
               "img/wbag3.jpg"
-          ]
+          ],
+          idProduct: this.$route.params.id
       }
 
   },
   methods:{
       changeImage(urlImage){
           this.gambar_default = urlImage ;
+          console.log(this.idProduct)
       }
   }
 }
