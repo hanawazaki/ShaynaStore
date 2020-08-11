@@ -18,9 +18,11 @@
                 <div class="row">
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
-                            <a href="./index.html">
-                                <img src="img/logo_website_shayna.png" alt="" />
-                            </a>
+                            <router-link to="/">
+                                <a href="#">
+                                    <img src="img/logo_website_shayna.png" alt="" />
+                                </a>
+                            </router-link>
                         </div>
                     </div>
                     <div class="col-lg-7 col-md-7"></div>
@@ -46,7 +48,7 @@
                                                             <h6>{{keranjang.name}}</h6>
                                                         </div>
                                                     </td>
-                                                    <td @click="removeItem(keranjangUser.index)" class="si-close">
+                                                    <td @click="removeItem(keranjang.id)" class="si-close">
                                                         <i class="ti-close"></i>
                                                     </td>
                                                 </tr>
@@ -60,10 +62,10 @@
                                     </div>
                                     <div class="select-total">
                                         <span>total:</span>
-                                        <h5>Rp120.00</h5>
+                                        <h5>Rp{{totalHarga}}</h5>
                                     </div>
                                     <div class="select-button">
-                                        <a href="#" class="primary-btn view-card">VIEW CARD</a>
+                                        <a href="#" class="primary-btn view-card"><router-link to="/cart" style="color:#FFF">VIEW CARD</router-link></a>
                                         <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
                                     </div>
                                 </div>
@@ -94,10 +96,26 @@ export default {
         }
     },
     methods:{
-        removeItem(index){
-            this.keranjangUser.splice(index);
+        removeItem(idx){
+            // get data dari local storage
+            let keranjangUserStorage = JSON.parse(localStorage.getItem("keranjangUser"));
+            // mapping / ambil id dari local storage
+            let itemKeranjangUserStorage = keranjangUserStorage.map(itemKeranjangUserStorage => itemKeranjangUserStorage.id);
+            // bandingkan id yg diget dan diambil dari parameter (idx)
+            let index = itemKeranjangUserStorage.findIndex(id => id == idx);
+            // hapus item 
+            this.keranjangUser.splice(index,1);
+
             const parsed = JSON.stringify(this.keranjangUser);
-            localStorage.setItem('keranjangUser',parsed);
+            localStorage.setItem("keranjangUser",parsed);
+            window.location.reload();
+        }
+    },
+    computed:{
+        totalHarga(){
+            return this.keranjangUser.reduce(function(items,data){
+                return items + data.price;
+            },0);
         }
     }
 }

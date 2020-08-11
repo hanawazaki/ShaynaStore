@@ -9,9 +9,9 @@
                                 <img v-bind:src="itemProduct.galleries[0].photo" alt="" />
                                 <ul>
                                     <li class="w-icon active">
-                                        <router-link to="/cart">
+                                        <!-- <router-link to="/cart"> -->
                                             <a @click="saveKeranjang(itemProduct.id,itemProduct.name,itemProduct.price,itemProduct.galleries[0].photo)" href="#"><i class="icon_bag_alt"></i></a>
-                                        </router-link>
+                                        <!-- </router-link> -->
                                     </li>
                                     <li class="quick-view">
                                         <router-link v-bind:to="'/product/'+itemProduct.id"> + Quick View</router-link>
@@ -65,6 +65,8 @@ export default {
             this.keranjangUser.push(productStored);
             const parsed = JSON.stringify(this.keranjangUser);
             localStorage.setItem('keranjangUser',parsed);
+
+            window.location.reload();
         }
     },
     mounted(){
