@@ -179,14 +179,7 @@ export default {
                 localStorage.removeItem('keranjangUser');
             }
         }
-        axios
-        .get("http://shayna-backend.me/api/products",{
-            params:{
-                id: this.$route.params.id
-            }
-        })
-        .then(res => (this.setDataPicture(res.data.data)))
-        .catch(err => console.log(err));
+       
     },
     computed:{
         subTotal(){
