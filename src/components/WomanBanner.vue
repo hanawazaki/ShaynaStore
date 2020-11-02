@@ -78,7 +78,7 @@ export default {
             }
         }
         axios
-        .get("http://shayna-backend.me/api/products")
+        .get("http://backend-shayna.online/api/products")
         .then(res => (this.products = res.data.data.data))
         .catch(err => console.log(err));
     }

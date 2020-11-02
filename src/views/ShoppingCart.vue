@@ -166,7 +166,7 @@ export default {
             };
 
             axios
-            .post("http://shayna-backend.me/api/checkout", checkoutData)
+            .post("http://backend-shayna.online/api/checkout", checkoutData)
             .then(() => this.$router.push('success'))
             .catch(err => console.log(err));
         }
