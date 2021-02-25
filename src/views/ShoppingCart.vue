@@ -195,7 +195,7 @@ export default {
       };
 
       axios
-        .post("http://shaynastore.herokuapp.com/api/checkout", checkoutData)
+        .post("http://localhost:9000/api/checkout", checkoutData)
         .then(() => this.$router.push("success"))
         .catch((err) => console.log(err));
     },

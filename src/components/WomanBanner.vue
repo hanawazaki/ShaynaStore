@@ -98,7 +98,7 @@ export default {
       }
     }
     axios
-      .get("http://shaynastore.herokuapp.com/api/products")
+      .get("http://localhost:9000/api/products")
       .then((res) => (this.products = res.data.data.data))
       .catch((err) => console.log(err));
   },
