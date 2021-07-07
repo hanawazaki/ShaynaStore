@@ -1,4 +1,4 @@
-# shayna
+# Shayna Store
 
 ## Project setup
 ```
