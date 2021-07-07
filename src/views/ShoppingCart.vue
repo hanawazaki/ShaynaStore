@@ -196,7 +196,10 @@ export default {
 
       axios
         .post("http://localhost:9000/api/checkout", checkoutData)
-        .then(() => this.$router.push("success"))
+        .then(() => {
+        this.$router.push("success")
+        localStorage.removeItem("keranjangUser");
+        })
         .catch((err) => console.log(err));
     },
   },
