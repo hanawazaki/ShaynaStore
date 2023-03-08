@@ -15,7 +15,14 @@
               v-bind:key="itemProduct.id"
             >
               <div class="pi-pic">
-                <img v-bind:src="itemProduct.galleries[0].photo" alt="" />
+                <img
+                  v-bind:src="
+                    itemProduct.galleries.length
+                      ? itemProduct.galleries[0].photo
+                      : ''
+                  "
+                  alt="xxx"
+                />
                 <ul>
                   <li class="w-icon active">
                     <!-- <router-link to="/cart"> -->
@@ -99,7 +106,10 @@ export default {
     }
     axios
       .get("http://localhost:9000/api/products")
-      .then((res) => (this.products = res.data.data.data))
+      .then((res) => {
+        this.products = res.data.data.data;
+        console.log("product", this.products);
+      })
       .catch((err) => console.log(err));
   },
 };
